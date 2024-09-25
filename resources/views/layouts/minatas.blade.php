@@ -157,11 +157,16 @@
                         <use href="https://admin.pixelstrap.net/admiro/assets/svg/iconly-sprite.svg#Document"></use>
                       </svg><a class="ms-2" href="to-do.html">Task</a>
                     </li> --}}
-                    <li class="d-flex"> 
+                    <li class="d-flex">
                       <svg class="svg-color">
-                        <use href="https://admin.pixelstrap.net/admiro/assets/svg/iconly-sprite.svg#Login"></use>
-                      </svg><a class="ms-2" href="login.html">Log Out</a>
-                    </li>
+                          <use href="https://admin.pixelstrap.net/admiro/assets/svg/iconly-sprite.svg#Login"></use>
+                      </svg>
+                      <form method="POST" action="{{ route('logout') }}" class="ms-2" id="logout-form" style="display: inline;">
+                          @csrf
+                          <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer;">Log Out</button>
+                      </form>
+                  </li>
+                  
                   </ul>
                 </div>
               </li>
@@ -191,7 +196,14 @@
                   <svg class="stroke-icon">
                     <use href="https://admin.pixelstrap.net/admiro/assets/svg/iconly-sprite.svg#Paper"></use>
                   </svg>
-                  <h6 class="f-w-600">My Loan Requests </h6></a></li>
+                  <h6 class="f-w-600">My Home </h6></a>
+                  <br>
+              
+                  <li class="sidebar-list"> <i class="fa-solid fa-thumbtack"></i><a class="sidebar-link" href="{{ route('view-loan-requests') }}">
+                      <svg class="stroke-icon">
+                        <use href="https://admin.pixelstrap.net/admiro/assets/svg/iconly-sprite.svg#Paper"></use>
+                      </svg>
+                      <h6 class="f-w-600">My Loan Requests </h6></a></li>
                   
               <li class="sidebar-list"> <i class="fa-solid fa-thumbtack"></i><a class="sidebar-link" href="{{ route('history') }}">
                   <svg class="stroke-icon">
