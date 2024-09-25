@@ -7,7 +7,7 @@
     <meta name="description" content="Admiro admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Admiro admin template, best javascript admin, dashboard template, bootstrap admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <title>SignIn | Minatas</title>
+    <title>Login || Minatas Loan App</title>
     <!-- Favicon icon-->
     <link rel="icon" href="public/minatas/img/fav.png" type="image/x-icon">
     <link rel="shortcut icon" href="public/minatas/img/fav.png" type="image/x-icon">
@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="public/minatas/assets/css/style.css">
     <link id="color" rel="stylesheet" href="public/minatas/assets/css/color-1.css" media="screen">
 
+    {{-- SHow hide password styles --}}
     <style>
     .show-hide .show::before {
           content: "👁"; /* Example icon */
@@ -50,19 +51,19 @@
       <div class="loader"><span></span><span></span><span></span><span></span><span></span></div>
     </div>
     <!-- login page start-->
-    <div class="container-fluid p-0">
-      <div class="row m-0">
-        <div class="col-12 p-0">    
+    <div class="p-0 container-fluid">
+      <div class="m-0 row">
+        <div class="p-0 col-12">    
           <div class="login-card login-dark">
             <div>
               <div>
                 <a class="logo" href="{{ route('dashboard') }}">
-                    <img class="img-fluid for-light m-auto" src="public/minatas/img/logo-white.svg">
+                    <img class="m-auto img-fluid for-light" src="public/minatas/img/logo-white.svg">
                     <img class="img-fluid for-dark" src="public/minatas/img/logo-dark.svg">
                 </a>
               </div>
               <div class="login-main"> 
-                <x-jet-validation-errors class="alert text-center alert-danger text-danger text-xs" />
+                <x-jet-validation-errors class="text-xs text-center alert alert-danger text-danger" />
                 <form class="theme-form" method="POST" action="{{ route('login') }}">
                     @csrf
                     <h2 class="text-center">Sign in to account</h2>
@@ -80,13 +81,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group mb-0 checkbox-checked">
+                    <div class="mb-0 form-group checkbox-checked">
                         <div class="form-check checkbox-solid-info">
                         <input class="form-check-input" name="remember_me" id="solid6" type="checkbox">
                         <label class="form-check-label" for="solid6">Remember password</label>
                         </div>
                         {{-- <a class="link" href="forget-password.html">Forgot password?</a> --}}
-                        <div class="text-end mt-3">
+                        <div class="mt-3 text-end">
                         <button class="btn btn-primary btn-block w-100" type="submit">
                             Sign in
                         </button>
