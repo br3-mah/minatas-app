@@ -179,7 +179,7 @@
                                   <span class="px-2 py-1 text-xs font-semibold text-gray-600 bg-gray-100 rounded-full dark:bg-gray-500/10">Hold</span>
                           @endswitch
                           <h6>{{ $application->loan_product->name }} of K{{ number_format($application->amount, 2) }}</h6>
-                          <div class="d-flex align-items-start"><img class="img-20 me-1 rounded-circle" src="public/minatas/assets/images/user/6.jpg" alt="" data-original-title="" title="">
+                          <div class="d-flex align-items-start"><img class="img-40 me-1 rounded-circle" src="https://img.freepik.com/premium-vector/calendar-reminder-date-spiral-icon-red-circle-style-simple-calendar-mark-date-holiday-important-day-concepts-vector-illustration-flat-style_165488-4093.jpg" alt="" data-original-title="" title="">
                             <div class="flex-grow-1">
                               <p class="mb-0">Date Applied: {{ $application->created_at->toFormattedDateString() }} . <span>{{ $application->created_at->diffForHumans() }}</span> </p>
                               <p class="mb-0">
