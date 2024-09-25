@@ -1,5 +1,5 @@
 <div class="col-xl-4 col-sm-6">
-    <a href="{{ route('new-loan') }}" class="card bg-primary">
+    <a href="{{ route('form') }}" class="card bg-primary">
         <div class="card-body">
         <div class="d-flex faq-widgets">
             <div class="flex-grow-1">

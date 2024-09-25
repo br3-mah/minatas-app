@@ -192,7 +192,7 @@
                 </div>
               </li>
               
-              <li class="sidebar-list"> <i class="fa-solid fa-thumbtack"></i><a class="sidebar-link" href="{{ route('view-loan-requests') }}">
+              <li class="sidebar-list"> <i class="fa-solid fa-thumbtack"></i><a class="sidebar-link" href="{{ route('dashboard') }}">
                   <svg class="stroke-icon">
                     <use href="https://admin.pixelstrap.net/admiro/assets/svg/iconly-sprite.svg#Paper"></use>
                   </svg>
