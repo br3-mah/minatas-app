@@ -1,59 +1,45 @@
 <div>
-    <div class="p-5 min-h-[calc(100vh-53px)] flex flex-col justify-between">
+    <div class="w-full p-4 bg-white">
         <div class="text-black dark:text-muted">
             <div class="w-full" style="overflow-y: scroll; overflow-x:hidden; height:full">
 
-                    <div class="py-2 pb-2 w-full "  id="wizard" enctype="multipart/form-data">
+                    <div class="w-full py-2 pb-2 "  id="wizard" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="MAX_FILE_SIZE" value="64000000" />
                         <input type="hidden" name="application_id" value="{{ App\Models\Application::currentApplication()->id }}">
                         <input type="hidden" name="borrower_id" value="{{ auth()->user()->id }}">
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                         <!-- Personal Info -->
-                        <div id="step1" class="step w-full max-w-6xl mx-auto bg-gradient-to-br from-blue-50 to-purple-50 shadow-xl rounded-2xl overflow-hidden">
+                        <div id="step1" class="w-full max-w-6xl mx-auto overflow-hidden shadow-xl step bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl">
                             <div class="p-12">
-                                <div class="flex justify-between items-center mb-8 py-4">
+                                <div class="flex items-center justify-between py-4 mb-8">
                                     <h6 class="text-3xl font-bold text-info">Application Basic Info</h6>
-                                    <div class="bg-indigo-100 text-indigo-800 text-base font-medium px-4 py-2 rounded-full shadow-sm">Step 1 of 6</div>
+                                    <div class="px-4 py-2 text-base font-medium text-indigo-800 bg-indigo-100 rounded-full shadow-sm">Step 1 of 6</div>
                                 </div>
 
-                                <div class="bg-white p-8 shadow-sm mb-8">
+                                <div class="p-8 mb-8 bg-white shadow-sm">
                                     <!-- Assuming __basic_info component exists -->
                                     @include('livewire.dashboard.__parts.__basic_info')
                                 </div>
 
-                                <div class="mt-10 flex justify-end">
-                                    <button type="button"
-                                        class="flex items-center btn bg-purple border border-purple text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]"
-                                        onclick="nextStep(1)"
-                                    >
+                                <div class="w-full">
+                                    <button onclick="nextStep(1)" class="btn btn-primary btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-primary btn-lg">
                                         Next
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2 transform group-hover:translate-x-1 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
-                        <div wire:ignore id="step2" class="step w-full">
-                            <div class="flex justify-between items-center mb-8 py-4">
-                                <h6 class="text-3xl font-bold text-info">NRC and/or TPin Upload (KYC)</h6>
-                                <div class="bg-indigo-100 text-indigo-800 text-base font-medium px-4 py-2 rounded-full shadow-sm">Step 2 of 6</div>
+                        <div wire:ignore id="step2" class="w-full step">
+                            <div class="flex items-center justify-between py-4 mb-8">
+                                <h6 class="text-3xl font-bold text-info">NRC Front & Back (KYC)</h6>
+                                <div class="px-4 py-2 text-base font-medium text-indigo-800 bg-indigo-100 rounded-full shadow-sm">Step 2 of 6</div>
                             </div>
                             @include('livewire.dashboard.__parts.__kyc_uploads')
                             <div class="flex justify-between mt-2">
-                                <button type="button" class="btn bg-muted border border-muted text-white transition-all duration-300 hover:bg-muted/[0.85] hover:border-muted/[0.85] dark:text-white dark:border-darkmuted dark:hover:text-white flex items-center mr-2" onclick="prevStep(2)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left mr-2" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                                    </svg>
-                                    Back
-                                </button>
-                                <button type="button" class="flex items-center btn bg-purple border border-purple text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]" onclick="nextStep(2)">
+                                <button class="btn btn-light text-dark btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-light btn-lg" onclick="prevStep(2)">Previous</button>
+                                <button onclick="nextStep(2)" class="btn btn-primary btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-primary btn-lg">
                                     Next
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right ml-2" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                                    </svg>
                                 </button>
                             </div>
                         </div>
@@ -61,144 +47,109 @@
 
                         <!-- Next of Kin Info -->
                         <div wire:ignore class="step" id="step3">
-                            <div class="flex justify-between items-center mb-8 py-4">
+                            <div class="flex items-center justify-between py-4 mb-8">
                                 <h6 class="text-3xl font-bold text-info">Next Of Kin</h6>
-                                <div class="bg-indigo-100 text-indigo-800 text-base font-medium px-4 py-2 rounded-full shadow-sm">Step 3 of 6</div>
+                                <div class="px-4 py-2 text-base font-medium text-indigo-800 bg-indigo-100 rounded-full shadow-sm">Step 3 of 6</div>
                             </div>
                             @include('livewire.dashboard.__parts.__next-of-kin')
                             <div class="flex justify-between mt-2">
-                                <button type="button" class="flex items-center btn bg-muted border border-muted text-white transition-all duration-300 hover:bg-muted/[0.85] hover:border-muted/[0.85] dark:text-white dark:border-darkmuted dark:hover:text-white" onclick="prevStep(3)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                                    </svg>
-                                    Back
-                                </button>
-                                <button type="button" class="flex items-center btn bg-purple border border-purple text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]" onclick="nextStep(3)">
+                                <button class="btn btn-light text-dark btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-light btn-lg" onclick="prevStep(3)">Previous</button>
+                                <button onclick="nextStep(3)" class="btn btn-primary btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-primary btn-lg">
                                     Next
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                                    </svg>
                                 </button>
                             </div>
                         </div>
 
                         <!-- References -->
                         <div wire:ignore class="step" id="step4">
-                            <div class="flex justify-between items-center mb-8 py-4">
+                            <div class="flex items-center justify-between py-4 mb-8">
                                 <h6 class="text-3xl font-bold text-info">Related Party</h6>
-                                <div class="bg-indigo-100 text-indigo-800 text-base font-medium px-4 py-2 rounded-full shadow-sm">Step 4 of 6</div>
+                                <div class="px-4 py-2 text-base font-medium text-indigo-800 bg-indigo-100 rounded-full shadow-sm">Step 4 of 6</div>
                             </div>
                             @include('livewire.dashboard.__parts.__references')
                             <div class="flex justify-between mt-2">
-                                <button type="button" class="items-center flex btn bg-muted border border-muted text-white transition-all duration-300 hover:bg-muted/[0.85] hover:border-muted/[0.85] dark:text-white dark:border-darkmuted dark:hover:text-white" onclick="prevStep(4)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                                    </svg>
-                                    Back
-                                </button>
-                                <button type="button" class="flex items-center btn bg-purple border border-purple text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]" onclick="nextStep(4)">
+                                <button class="btn btn-light text-dark btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-light btn-lg" onclick="prevStep(4)">Previous</button>
+                                
+                                <button onclick="nextStep(4)" class="btn btn-primary btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-primary btn-lg">
                                     Next
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                                    </svg>
                                 </button>
                             </div>
                         </div>
 
                         <!-- Bank Details -->
                         <div wire:ignore class="step" id="step5">
-                            <div class="flex justify-between items-center mb-8 py-4">
+                            <div class="flex items-center justify-between py-4 mb-8">
                                 <h6 class="text-3xl font-bold text-info">Your Bank Info</h6>
-                                <div class="bg-indigo-100 text-indigo-800 text-base font-medium px-4 py-2 rounded-full shadow-sm">Step 5 of 6</div>
+                                <div class="px-4 py-2 text-base font-medium text-indigo-800 bg-indigo-100 rounded-full shadow-sm">Step 5 of 6</div>
                             </div>
                             @include('livewire.dashboard.__parts.__bank-info')
                             <div class="flex justify-between mt-2">
-                                <button type="button" class="flex items-center btn bg-muted border border-muted text-white transition-all duration-300 hover:bg-muted/[0.85] hover:border-muted/[0.85] dark:text-white dark:border-darkmuted dark:hover:text-white" onclick="prevStep(5)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                                    </svg>
-                                    Back
-                                </button>
-                                <button type="button" class="flex items-center btn bg-purple border border-purple text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]" onclick="nextStep(5)">
+                                <button class="btn btn-light text-dark btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-light btn-lg" onclick="prevStep(5)">Previous</button>
+                                
+                                <button onclick="nextStep(5)" class="btn btn-primary btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-primary btn-lg">
                                     Next
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                                    </svg>
                                 </button>
                             </div>
                         </div>
 
                         <!-- Bank Details -->
                         <div wire:ignore class="step" id="step6">
-                            <div class="flex justify-between items-center mb-8 py-4">
+                            <div class="flex items-center justify-between py-4 mb-8">
                                 <h6 class="text-3xl font-bold text-info">Support Documents</h6>
-                                <div class="bg-indigo-100 text-indigo-800 text-base font-medium px-4 py-2 rounded-full shadow-sm">Step 6 of 6</div>
+                                <div class="px-4 py-2 text-base font-medium text-indigo-800 bg-indigo-100 rounded-full shadow-sm">Step 6 of 6</div>
                             </div>
                             @include('livewire.dashboard.__parts.__doc_upload')
                             <div class="flex justify-between mt-2">
-                                <button type="button" class="btn bg-muted border border-muted text-white transition-all duration-300 hover:bg-muted/[0.85] hover:border-muted/[0.85] dark:text-white dark:border-darkmuted dark:hover:text-white flex items-center" onclick="prevStep(6)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                                    </svg>
-                                    Back
-                                </button>
-                                <button type="button" class="flex items-center btn bg-purple border border-purple text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]" onclick="nextStep(6)">
+                                <button class="btn btn-light text-dark btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-light btn-lg" onclick="prevStep(6)">Previous</button>
+                                <button onclick="nextStep(6)" class="btn btn-primary btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-primary btn-lg">
                                     Next
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                                    </svg>
                                 </button>
                             </div>
                         </div>
 
 
                         <!-- Loan Details -->
-                        <div class="step p-6 bg-white shadow-md rounded-lg" id="step7">
-                            <div class="flex justify-between items-center mb-8 py-4">
+                        <div class="p-6 bg-white rounded-lg shadow-md step" id="step7">
+                            <div class="flex items-center justify-between py-4 mb-8">
                                 <h6 class="text-3xl font-bold text-info">My Application Summary</h6>
-                                <div class="bg-indigo-100 text-indigo-800 text-base font-medium px-4 py-2 rounded-full shadow-sm">Step 6 of 6</div>
+                                <div class="px-4 py-2 text-base font-medium text-indigo-800 bg-indigo-100 rounded-full shadow-sm">Step 6 of 6</div>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                                 <!-- Left Column -->
-                                <div class="bg-gray-50 p-4 border border-gray-200 rounded-lg">
-                                    <p class="text-sm text-gray-600">Loan Amount: <span class="font-bold text-gray-800">K{{ $loan->amount }}</span></p>
-                                    <p class="text-sm text-gray-600">Loan Type: <span class="font-bold text-gray-800">{{ $this->get_loan_product($loan->loan_product_id)->name }} Loan</span></p>
-                                    <p class="text-sm text-gray-600">Interest Rate: <span class="font-bold text-gray-800">{{ $this->get_loan_product($loan->loan_product_id)->def_loan_interest }} %</span></p>
+                                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                                    <p class="text-sm text-gray-600">Loan Amount: <span class="font-bold text-gray-800 fw-bold">K{{ $loan->amount }}</span></p>
+                                    <p class="text-sm text-gray-600">Loan Type: <span class="font-bold text-gray-800 fw-bold">{{ $this->get_loan_product($loan->loan_product_id)->name }} Loan</span></p>
+                                    <p class="text-sm text-gray-600">Interest Rate: <span class="font-bold text-gray-800 fw-bold">{{ $this->get_loan_product($loan->loan_product_id)->def_loan_interest }} %</span></p>
                                     {{-- <p class="text-sm text-gray-600">Service Charge: <span class="font-bold text-gray-800">10%</span></p> --}}
-                                    <p class="text-sm text-gray-600">Tenure: <span class="font-bold text-gray-800">{{ $loan->repayment_plan }} Month(s)</span></p>
+                                    <p class="text-sm text-gray-600">Tenure: <span class="font-bold text-gray-800 fw-bold">{{ $loan->repayment_plan }} Month(s)</span></p>
                                     <input type="hidden" name="final" value="1">
                                 </div>
                         
                                 <!-- Right Column -->
-                                <div class="bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
                                     {{-- <p class="text-sm text-gray-600">You Will Receive: <span class="font-bold text-gray-800">K{{ App\Models\Application::receiveAmount($loan->amount, $loan->repayment_plan) }}</span></p> --}}
-                                    <p class="text-sm text-gray-600">Payback Amount: <span class="font-bold text-gray-800">K{{ App\Models\Application::payback($loan->amount, $loan->repayment_plan, $loan->loan_product_id) }}</span></p>
-                                    <p class="text-sm text-gray-600">Next Payment Amount: <span class="font-bold text-gray-800">K{{ App\Models\Application::paybackInstallment($loan->amount, $loan->repayment_plan, $loan->loan_product_id) }}</span></p>
-                                    <p class="text-sm text-gray-600">Next Payment Date: <span class="font-bold text-gray-800">{{ App\Models\Application::paybackNextDate($loan) }}</span></p>
-                                    <p class="text-sm text-gray-600">Phone Number: <span class="font-bold text-gray-800">{{ auth()->user()->phone }}</span></p>
-                                    <p class="text-sm text-gray-600">Email: <span class="font-bold text-gray-800">{{ auth()->user()->email }}</span></p>
+                                    <p class="text-sm text-gray-600">Payback Amount: <span class="font-bold text-gray-800 fw-bold">K{{ App\Models\Application::payback($loan->amount, $loan->repayment_plan, $loan->loan_product_id) }}</span></p>
+                                    <p class="text-sm text-gray-600">Next Payment Amount: <span class="font-bold text-gray-800 fw-bold">K{{ App\Models\Application::paybackInstallment($loan->amount, $loan->repayment_plan, $loan->loan_product_id) }}</span></p>
+                                    <p class="text-sm text-gray-600">Next Payment Date: <span class="font-bold text-gray-800 fw-bold">{{ App\Models\Application::paybackNextDate($loan) }}</span></p>
+                                    <p class="text-sm text-gray-600">Phone Number: <span class="font-bold text-gray-800 fw-bold">{{ auth()->user()->phone }}</span></p>
+                                    <p class="text-sm text-gray-600">Email: <span class="font-bold text-gray-800 fw-bold">{{ auth()->user()->email }}</span></p>
                                 </div>
                             </div>
                         
-                            <div class="flex justify-between items-center mt-6">
-                                <button  onclick="prevStep(7)" id="backicon" type="button" class="bg-muted border border-muted text-white py-2 px-4 flex items-center transition duration-300 hover:bg-muted/80 hover:border-muted/80 dark:text-white dark:border-darkmuted dark:hover:text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left mr-2" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                                    </svg>
-                                    Back
-                                </button>
-                                <button wire:click="completeApplication()" id="submit_click" class="bg-success border border-success text-white py-2 px-4 flex items-center transition duration-300 hover:bg-success/80 hover:border-success/80 relative">
+                            <div class="flex items-center justify-between mt-6">
+                                <button class="btn btn-light text-dark btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-light btn-lg" onclick="prevStep(7)">Previous</button>
+                                <button wire:click="completeApplication()" id="submit_click"class="btn btn-primary btn-lg" type="button" data-bs-toggle="tooltip" data-bs-original-title="btn btn-primary btn-lg">
                                     <!-- Loading Indicator -->
-                                    <div wire:loading class="absolute inset-0 flex items-center justify-center bg-success bg-opacity-50 z-10 rounded-lg">
-                                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <div wire:loading class="absolute inset-0 z-10 flex items-center justify-center bg-opacity-50 rounded-lg bg-success">
+                                        <svg class="w-5 h-5 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 1 1 16 0A8 8 0 0 1 4 12z"></path>
                                         </svg>
-                                        <span class="text-white ml-2">Processing...</span>
+                                        <span class="ml-2 text-white">Processing...</span>
                                     </div>
                                     <div id="finishicon" class="flex items-center">
                                         Finish
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right ml-2" viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ml-2 bi bi-arrow-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
                                         </svg>
                                     </div>

@@ -57,7 +57,7 @@ class FormApplication extends Component
         $this->preapprovalPath = $this->util && $this->util->uploads->where('name', 'preapproval')->first() ? $this->util->uploads->where('name', 'preapproval')->first()->path : '';
         
         return view('livewire.dashboard.applications.form-application')
-        ->layout('layouts.app');
+        ->layout('layouts.minatas');
     }
 
     public function prefinal()

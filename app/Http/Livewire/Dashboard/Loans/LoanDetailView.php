@@ -35,7 +35,7 @@ class LoanDetailView extends Component
         $this->loan_stage = $this->get_loan_current_stage($this->loan->loan_product_id);
         
         return view('livewire.dashboard.loans.loan-detail-app-view')
-        ->layout('layouts.app');
+        ->layout('layouts.minatas');
     }
     
     public function setLoanID($id){

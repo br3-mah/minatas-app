@@ -17,6 +17,7 @@ class ApplicationForm extends Component
     public $step_1_title = 'Loan Details';
     public function render()
     {
+        dd('here');
         return view('livewire.parts.application-form');
     }
 

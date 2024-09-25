@@ -20,22 +20,8 @@
           <div class="container-fluid dashboard-2">
             <div class="row">
               <div class="col-xxl-3 col-xl-4 order-xl-2 order-xxl-0 col-sm-6 box-col-6">
-                <div class="overflow-hidden card target-card">
-                  <div class="card-header card-no-border">
-                    <ul>
-                      <li class="text-center bg-light-primary">
-                        <h3>Our Target</h3>
-                        <p class="mb-0">Completed</p>
-                        <h6 class="font-primary">$638.930</h6>
-                      </li>
-                      <li class="text-center bg-primary">
-                        <h3>We Archieve</h3>
-                        <p class="mb-0">Completed 2 Hours</p>
-                        <h6>$638.930</h6>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="p-0 card-body"> 
+                <div class="overflow-hidden card target-card"> 
+                  <div class="p-0 pb-4 card-body"> 
                     <div class="main-img"><img class="img-fluid img-banner" src="public/minatas/assets/images/dashboard-2/4.png" alt=""/>
                       <ul class="animate-img">
                         <li class="right-1"> <img class="img-fluid" src="public/minatas/assets/images/dashboard-2/animate/1.png" alt=""/></li>
@@ -55,50 +41,24 @@
                     <div class="items-slider">
                       <div class="swiper mySwiper2">
                         <div class="swiper-wrapper">
-                          <div class="swiper-slide">
-                            <div class="slider-box bg-light-secondary">
-                              <div class="header-top">
-                                <div class="badge badge-secondary rated-product-badge">Hot</div><img class="img-fluid" src="public/minatas/assets/images/dashboard-2/2.png" alt=""/>
-                                <div class="i fa-regular fa-heart"></div>
+                          @forelse ($this->get_all_loan_products() as $prod)
+                            <div class="swiper-slide">
+                              <div class="slider-box bg-light-secondary">
+                                <div class="items-center justify-center header-top">
+                                  <div class="badge badge-secondary rated-product-badge">Hot</div>
+                                  <img class="img-fluid" width="150" src="public/minatas/icon/box.png" alt=""/>
+                                  <div class="i fa-regular fa-heart"></div>
+                                </div>
+                              </div>
+                              <div class="text-center slider-content">
+                                <h4 class="text-secondary">{{ $prod->name }}</h4>
+                                <p class="mb-0">{{ $prod->description }}</p>
+                                <p>K2000&nbsp;to&nbsp;K4000</p>
+                                
                               </div>
                             </div>
-                            <div class="text-center slider-content">
-                              <h4 class="text-secondary">Weekend Sale</h4>
-                              <p class="mb-0">AirPods 3rd Generation Silicone Skin</p>
-                              <h6>$16.00<span>&nbsp;$30.00</span></h6>
-                              <div class="input-group"> <span class="input-group-text decrement-touchspin"> 
-                                  <svg class="svg-color">
-                                    <use href="https://admin.pixelstrap.net/admiro/assets/svg/iconly-sprite.svg#minus"></use>
-                                  </svg></span>
-                                <input class="form-control bg-light-secondary input-touchspin" type="text" value="1"/><span class="input-group-text increment-touchspin"> 
-                                  <svg class="svg-color">
-                                    <use href="https://admin.pixelstrap.net/admiro/assets/svg/iconly-sprite.svg#plus"></use>
-                                  </svg></span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="swiper-slide">
-                            <div class="slider-box bg-light-primary">
-                              <div class="header-top">
-                                <div class="badge badge-primary rated-product-badge">Hot</div><img class="img-fluid" src="public/minatas/assets/images/dashboard-2/6.png" alt=""/>
-                                <div class="i fa-regular fa-heart"></div>
-                              </div>
-                            </div>
-                            <div class="text-center slider-content">
-                              <h4 class="text-primary">Special Offer</h4>
-                              <p class="mb-0">Smart Design Phone Multi Color</p>
-                              <h6>$86.00<span>&nbsp;$60.00</span></h6>
-                              <div class="input-group"> <span class="input-group-text decrement-touchspin"> 
-                                  <svg class="svg-color">
-                                    <use href="https://admin.pixelstrap.net/admiro/assets/svg/iconly-sprite.svg#minus"></use>
-                                  </svg></span>
-                                <input class="form-control bg-light-primary input-touchspin" type="text" value="1"/><span class="input-group-text increment-touchspin"> 
-                                  <svg class="svg-color">
-                                    <use href="https://admin.pixelstrap.net/admiro/assets/svg/iconly-sprite.svg#plus"></use>
-                                  </svg></span>
-                              </div>
-                            </div>
-                          </div>
+                          @empty
+                          @endforelse
                         </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
@@ -106,6 +66,60 @@
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <div class=" card-body file-manager col-xxl-4 col-xl-4 col-sm-12 box-col-6">
+                <h4 class="mb-2">Quick Access</h4>
+                <ul class="flex-row quick-file d-flex"> 
+                  <li>
+                    <a href="{{ route('view-loan-requests') }}">
+                      <div class="quick-box">
+                        <img width="50" src="public/minatas/icon/loans.png" alt="">
+                      </div>
+                    </a>
+                    <h6 class="mb-2">My Loans</h6>
+                  </li>
+                  <li>
+                    <a href="{{ route('history') }}">
+                      <div class="quick-box">
+                        <img width="50" src="public/minatas/icon/loan.png" alt="">
+                      </div>
+                    </a>
+                    <h6 class="mb-2">History</h6>
+                  </li>
+                  <li>
+                    <a href="{{ route('kyc-update', ['view' => 'kyc'])  }}">
+                      <div class="quick-box">
+                        <img width="50" src="public/minatas/icon/kyc.png" alt="">
+                      </div>
+                    </a>
+                    <h6 class="mb-2">KYC</h6>
+                  </li>
+                  <li>
+                    <a href="{{ route('transaction.item', ['view'=>'payments']) }}">
+                      <div class="quick-box">
+                        <img width="50" src="public/minatas/icon/repay.png" alt="">
+                      </div>
+                    </a>
+                    <h6 class="mb-2">Repayments</h6>
+                  </li>
+                  <li> 
+                    <a href="{{ route('notifications') }}">
+                      <div class="quick-box">
+                        <img width="50" src="public/minatas/icon/notification.png" alt="">
+                      </div>
+                    </a>
+                    <h6 class="mb-2">Notifications</h6>
+                  </li>
+                  <li>
+                    <a href="{{ route('support', ['view' => 'issue'])  }}">
+                      <div class="quick-box">
+                        <img width="50" src="public/minatas/icon/support.png" alt="">
+                      </div>
+                    </a>
+                    <h6 class="mb-2">Support</h6>
+                  </li>
+                </ul>
               </div>
               
       
